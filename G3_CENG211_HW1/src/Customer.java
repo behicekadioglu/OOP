@@ -1,32 +1,34 @@
 public class Customer {
-    private String name;
-    private int numOfBookedTickets;
-    private Ticket[] tickets;
+    private String customerName;
+    private int numOfTickets;
+    private Ticket[] bookedTickets;
 
     // Constructors
-
-    // Getters and Setters
-    public String getName() {
-        return name;
+    public Customer(String customerName, int numOfTickets) {
+        this.customerName = customerName;
+        this.numOfTickets = numOfTickets;
+        this.bookedTickets = new Ticket[numOfTickets];
+    }
+    // Getters
+    public String getCustomerName() { 
+        return customerName; 
+    }
+    public int getNumTickets() { 
+        return numOfTickets; 
+    }
+    public Ticket[] getBookedTickets() { 
+        return bookedTickets; 
     }
 
-    public int getNumOfBookedTickets() {
-        return numOfBookedTickets;
+    //Setters
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
-
-    public Ticket[] getTickets() {
-        return tickets;
+    public void setNumTickets(int numTickets) {
+        this.numOfTickets = numTickets;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNumOfBookedTickets(int numOfBookedTickets) {
-        this.numOfBookedTickets = numOfBookedTickets;
-    }
-
-    public void setTickets(Ticket[] tickets) {
-        this.tickets = tickets;
+    public void bookTicket(Ticket ticket, int index) {
+        bookedTickets[index] = ticket;
+        ticket.setBookingStatus(true);
     }
 }
