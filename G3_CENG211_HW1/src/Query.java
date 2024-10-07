@@ -1,3 +1,4 @@
 public class Query {
+    //sorgulama
 
 }
