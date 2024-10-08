@@ -16,7 +16,10 @@ public class TicketBookingApplication {
             throw exception;  // Re-throw the exception to be handled in the main method
         } catch (IOException e) {
             System.out.println("An error occurred: " + e.getMessage());
+            
             throw e;  // Ensure IOException is also re-thrown for handling in main method
+        
+        
         }
 
     }

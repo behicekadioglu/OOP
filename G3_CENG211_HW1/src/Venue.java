@@ -1,6 +1,6 @@
 public class Venue {
     private int numOfSections;
-    private Section[] sections;
+    private Section[] sections; //0,1,2,3
 
     // Constructors
 
