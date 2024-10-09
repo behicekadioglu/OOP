@@ -31,16 +31,17 @@ public class Ticket {
     }
 
     // Methods
-    public void bookTicket() { //prevents double booking
+
+    //prevents double booking
+    public void bookTicket() {
         if (!this.bookingStatus) {
             this.bookingStatus = true;
         } else {
             System.out.println("This ticket is already booked.");
         }
     }
-    
 
-    // Getters
+    // Getters and Setters
     public int getSectionNumber() {
         return sectionNumber;
     }
@@ -60,26 +61,8 @@ public class Ticket {
     public boolean isBooked() {
         return bookingStatus;
     }
-    // Setters
-    public void setSectionNumber(int sectionNumber) {
-        this.sectionNumber = sectionNumber;
-    }
 
-    public void setRowNumber(int seatNumber) {
-        this.rowNumber = (seatNumber - 1) / 60 + 1;
-    }
 
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setBookingStatus(boolean booked) {
-        bookingStatus = booked;
-    }
 
     @Override
     public String toString() {

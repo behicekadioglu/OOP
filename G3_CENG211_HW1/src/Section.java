@@ -3,8 +3,8 @@ import java.util.Random;
 
 public class Section {
     private int ID;
-    private int numOfRows = 10;
-    private int numOfSeats = 600;
+    private final int numOfRows = 10;
+    private final int numOfSeats = 60;
     private double maxPrice;
     private double minPrice;
     private Ticket[][] tickets;
@@ -15,19 +15,40 @@ public class Section {
         this.ID = ID;
         this.maxPrice = calculateMaxPrice();
         this.minPrice = calculateMinPrice();
-        this.tickets = new Ticket[numOfRows][numOfSeats];
+        this.tickets = generateTickets();
     }
 
     public Section(Section section) {
         this.ID = section.getID();
-        this.numOfRows = section.getNumOfRows();
-        this.numOfSeats = section.getNumOfSeats();
         this.maxPrice = section.getMaxPrice();
         this.minPrice = section.getMinPrice();
         this.tickets = section.getTickets();
     }
     
     // Methods
+
+    private Ticket[][] generateTickets() {
+        Double maxPrice = this.maxPrice;
+        Double minPrice = this.minPrice;
+        double price;
+
+        // Loop through each row and seat to create tickets
+        for (int row = 0; row < numOfRows; row++) {
+            for (int seat = 0; seat < numOfSeats; seat++) {
+                if (row == 0) {
+                    price = maxPrice; // First row has maximum price
+                } else if (row == 1) {
+                    price = maxPrice * 0.8; // Second row has 80% of maximum price
+                } else {
+                    // Remaining rows get random prices between minPrice and maxPrice
+                    price = generateRandom(maxPrice, minPrice);
+                }
+                // Create and store ticket in the tickets array
+                tickets[row][seat] = new Ticket(ID, row, seat, price);
+            }
+        }
+        return tickets;
+    }
 
     private double calculateMaxPrice() {
         double localMaxPrice = 0.0;
@@ -106,7 +127,7 @@ public class Section {
         return localMinPrice;
     }
 
-    private double generateRandom(int max, int min) {
+    private double generateRandom(double max, double min) {
         Random rand = new Random();
         return rand.nextDouble()*(max-min) + min;
     }
@@ -144,9 +165,4 @@ public class Section {
             System.out.println("Invalid ID");
         }
     }
-
-    public void setTickets(Ticket[][] tickets) {
-        this.tickets = tickets;
-    }
-
 }
