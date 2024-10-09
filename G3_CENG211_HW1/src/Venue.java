@@ -3,7 +3,12 @@ public class Venue {
     private Section[] sections;
 
     // Constructors
-
+    public Venue() {
+        for (int i = 0; i <4; i++){
+            Section section = new Section(i);
+            sections[i] = section;
+        }
+    }
 
     // Getters and Setters
     public int getNumOfSections() {
