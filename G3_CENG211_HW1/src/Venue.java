@@ -12,33 +12,48 @@ public class Venue {
         }
     }
     public Ticket getAvailableTicket(Section section) {
-        Ticket choosenTicket;
-
+        Ticket chosenTicket;
+        boolean[][] checkedSeats = new boolean[10][60]; // 2D array to track checked seats
         int attempts = 0; // Counter for attempts
-    
+        int totalSeats = 10 * 60; // 10 rows, 60 seats per row
+
         // Attempt to find an available ticket
-        while (attempts < 600) { // Try up to 600 times
-            choosenTicket = getRandomTicket(section);
-            if (!choosenTicket.isBooked()) {
-                return choosenTicket; // Return the available ticket if found
+        while (attempts < totalSeats) {
+            chosenTicket = getRandomTicket(section, checkedSeats);
+
+            if (chosenTicket == null) {
+                return null; // All tickets have been checked and booked
             }
+
+            if (!chosenTicket.isBooked()) {
+                return chosenTicket; // Return the available ticket if found
+            }
+
             attempts++; // Increment attempts
         }
-    
-        return null; // Return null if no available tickets are found after 600 attempts
+
+        return null; // Return null if no available tickets are found after attempts
     }
 
     // Method to get a random ticket from the venue for a specific section
-    public Ticket getRandomTicket(Section section) {
-        Random random =  new Random();
-
+    private Ticket getRandomTicket(Section section, boolean[][] checkedSeats) {
+        Random random = new Random();
         Ticket[][] ticketsArray = section.getTickets();
-        int randomRow = random.nextInt(10);
-        int randomSeat = random.nextInt(60);
+        int randomRow, randomSeat;
 
-        Ticket choosenTicket = ticketsArray[randomRow][randomSeat];
-        return choosenTicket;
-    } 
+        // Choose a random unchecked seat
+        randomRow = random.nextInt(10);
+        randomSeat = random.nextInt(60);
+
+        // If the seat has not been checked, mark it as checked and return the ticket
+        if (!checkedSeats[randomRow][randomSeat]) {
+            checkedSeats[randomRow][randomSeat] = true;
+            return ticketsArray[randomRow][randomSeat];
+        }
+
+        return null; // Return null if the seat has already been checked
+    }
+    
 
     // Getters and Setters
     public int getNumOfSections() {

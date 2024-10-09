@@ -8,18 +8,18 @@ public class Section {
     private double minPrice;
     private Ticket[][] tickets;
 
+    // Constructor with section ID
     public Section(int ID) {
         this.ID = ID;
-        this.tickets = new Ticket[numOfRows][numOfSeats];
-        generateTickets(ID); //generates tickets according to the section id
+        this.maxPrice = 4000 - this.ID * 500; // Set max price based on section ID
+        this.minPrice = 3000 - this.ID * 500; // Set min price based on section ID
+        this.tickets = new Ticket[numOfRows][numOfSeats]; // Initialize the ticket array
+        generateTickets(); // Generate tickets for the section
     }
 
     // Creating every ticket possible in one section
-    private void generateTickets(int ID) {
+    private void generateTickets() {
         Random rand = new Random();
-
-        Double maxPrice = getMaxPrice(ID);
-        Double minPrice = getMinPrice(ID);
 
         // Loop through each row and seat to create tickets
         for (int row = 0; row < numOfRows; row++) {
@@ -39,7 +39,7 @@ public class Section {
                     price = minPrice + (maxPrice - minPrice) * rand.nextDouble();
                 }
 
-                // Create and store ticket in the tickets array
+                // Create and store the ticket in the tickets array
                 tickets[row][seat] = new Ticket(ID, row, seat, price);
             }
         }
@@ -58,12 +58,12 @@ public class Section {
         return numOfSeats;
     }
 
-    public double getMaxPrice(int ID) {
-        return maxPrice = 4000 - ID * 500;
+    public double getMaxPrice() {
+        return maxPrice;
     }
 
-    public double getMinPrice(int ID) {
-        return minPrice = 3000 - ID * 500;
+    public double getMinPrice() {
+        return minPrice;
     }
 
     public Ticket[][] getTickets() {
@@ -73,5 +73,5 @@ public class Section {
     public void setID(int ID) {
         this.ID = ID;
     }
-
 }
+
