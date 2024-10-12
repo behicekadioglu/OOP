@@ -1,20 +1,9 @@
 public class Venue {
-<<<<<<< Updated upstream
-    private int numOfSections;
-=======
     private final int numOfSections = 4;
->>>>>>> Stashed changes
     private Section[] sections;
 
     // Constructors
     public Venue() {
-<<<<<<< Updated upstream
-        for (int i = 0; i <4; i++){
-            Section section = new Section(i);
-            sections[i] = section;
-        }
-    }
-=======
         this.createSections();
     }
 
@@ -46,7 +35,6 @@ public class Venue {
         double occupancyRate = occupantSeats / (double) totalNumOfSeats;
         return occupancyRate;
     }
->>>>>>> Stashed changes
 
     // Getters and Setters
     public int getNumOfSections() {

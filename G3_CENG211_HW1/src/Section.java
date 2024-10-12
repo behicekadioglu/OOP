@@ -7,17 +7,6 @@ public class Section {
     private final int numOfSeats = 60;
     private double maxPrice;
     private double minPrice;
-<<<<<<< Updated upstream
-    private Ticket[][] tickets;
-
-
-    // Constructors
-    public Section(int ID) {
-        this.ID = ID;
-        this.maxPrice = calculateMaxPrice();
-        this.minPrice = calculateMinPrice();
-        this.tickets = generateTickets();
-=======
     private Ticket[][] tickets = new Ticket[numOfRows][numOfSeats];
 
     // Constructors
@@ -26,7 +15,6 @@ public class Section {
         this.determineMaxPrice(ID);
         this.determineMinPrice(ID);
         this.setTickets(this.createTickets());
->>>>>>> Stashed changes
     }
 
     public Section(Section section) {
@@ -36,32 +24,6 @@ public class Section {
         this.tickets = section.getTickets();
     }
 
-<<<<<<< Updated upstream
-    private Ticket[][] generateTickets() {
-        Double maxPrice = this.maxPrice;
-        Double minPrice = this.minPrice;
-        double price;
-
-        // Loop through each row and seat to create tickets
-        for (int row = 0; row < numOfRows; row++) {
-            for (int seat = 0; seat < numOfSeats; seat++) {
-                if (row == 0) {
-                    price = maxPrice; // First row has maximum price
-                } else if (row == 1) {
-                    price = maxPrice * 0.8; // Second row has 80% of maximum price
-                } else {
-                    // Remaining rows get random prices between minPrice and maxPrice
-                    price = generateRandom(maxPrice, minPrice);
-                }
-                // Create and store ticket in the tickets array
-                tickets[row][seat] = new Ticket(ID, row, seat, price);
-            }
-        }
-        return tickets;
-    }
-
-    private double calculateMaxPrice() {
-=======
     // Methods
     // gives a random double number in the range of max and min, max is not included
     private double generateRandomDouble(double min, double max) {
@@ -72,7 +34,6 @@ public class Section {
     // generates a random max price for the section according to the section ID
     // This method is written according to the threshold values that are given in the homework description
     private double determineMaxPrice(int ID) {
->>>>>>> Stashed changes
         double localMaxPrice = 0.0;
         switch (ID) {
             case 0:
@@ -151,11 +112,6 @@ public class Section {
         return localMinPrice;
     }
 
-<<<<<<< Updated upstream
-    private double generateRandom(double max, double min) {
-        Random rand = new Random();
-        return rand.nextDouble()*(max-min) + min;
-=======
     // creates all tickets of the section with random prices
     private Ticket[][] createTickets() {
         Ticket[][] tickets = new Ticket[this.numOfRows][this.numOfSeats];
@@ -173,7 +129,7 @@ public class Section {
             }
         }
         return tickets;
->>>>>>> Stashed changes
+
     }
 
     // this method calculates the total revenue of a section
@@ -238,8 +194,6 @@ public class Section {
             System.out.println("Invalid ID");
         }
     }
-<<<<<<< Updated upstream
-=======
 
     public void setTickets(Ticket[][] tickets) {
         this.tickets = tickets;
@@ -249,5 +203,4 @@ public class Section {
     public void setTicket(int row, int seat, Ticket ticket){
         this.tickets[row][seat] = ticket;
     }
->>>>>>> Stashed changes
 }

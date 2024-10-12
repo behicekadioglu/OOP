@@ -30,29 +30,16 @@ public class Ticket {
     }
 
     // Methods
-<<<<<<< Updated upstream
-
-    //prevents double booking
-    public void bookTicket() {
-        if (!this.bookingStatus) {
-            this.bookingStatus = true;
-=======
     // makes the ticket booked, if it is booked prints a string to say that
     public void bookTicket() {
         if (this.bookingStatus == false){
             this.setBookingStatus(true);
->>>>>>> Stashed changes
         } else {
             System.out.println("This ticket is already booked");
         }
     }
-<<<<<<< Updated upstream
-
-    // Getters and Setters
-=======
     
     // Getters and setters
->>>>>>> Stashed changes
     public int getSectionNumber() {
         return sectionNumber;
     }
@@ -72,13 +59,26 @@ public class Ticket {
     public boolean isBooked() {
         return bookingStatus;
     }
-<<<<<<< Updated upstream
-=======
 
-    public void setSectionNumber(int sectionNumber) {
+    private void setSectionNumber(int sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
->>>>>>> Stashed changes
+
+    private void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
+    }
+
+    private void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    private void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setBookingStatus(boolean booked){
+        this.bookingStatus = booked;
+    }
 
 
 
