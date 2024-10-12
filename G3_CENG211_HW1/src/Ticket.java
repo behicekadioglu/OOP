@@ -31,6 +31,7 @@ public class Ticket {
     }
 
     // Methods
+<<<<<<< Updated upstream
 
     //prevents double booking
     public void bookTicket() {

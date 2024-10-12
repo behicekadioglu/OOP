@@ -7,6 +7,7 @@ public class Section {
     private final int numOfSeats = 60;
     private double maxPrice;
     private double minPrice;
+<<<<<<< Updated upstream
     private Ticket[][] tickets;
 
 
@@ -16,6 +17,8 @@ public class Section {
         this.maxPrice = calculateMaxPrice();
         this.minPrice = calculateMinPrice();
         this.tickets = generateTickets();
+=======
+>>>>>>> Stashed changes
     }
 
     public Section(Section section) {
@@ -27,6 +30,7 @@ public class Section {
     
     // Methods
 
+<<<<<<< Updated upstream
     private Ticket[][] generateTickets() {
         Double maxPrice = this.maxPrice;
         Double minPrice = this.minPrice;
