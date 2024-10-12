@@ -32,6 +32,7 @@ public class Ticket {
 
     // Methods
     public void bookTicket() { //prevents double booking
+        //RANDOM METHOD HERE
         if (!this.bookingStatus) {
             this.bookingStatus = true;
         } else {
@@ -39,7 +40,6 @@ public class Ticket {
         }
     }
     
-
     // Getters
     public int getSectionNumber() {
         return sectionNumber;
@@ -65,8 +65,8 @@ public class Ticket {
         this.sectionNumber = sectionNumber;
     }
 
-    public void setRowNumber(int seatNumber) {
-        this.rowNumber = (seatNumber - 1) / 60 + 1;
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
     }
 
     public void setSeatNumber(int seatNumber) {
