@@ -6,6 +6,7 @@ public class Venue {
 
     // Constructors
     public Venue() {
+<<<<<<< Updated upstream
         sections = new Section[numOfSections];
         for (int i = 0; i < numOfSections; i++) {
             sections[i] = new Section(i); // Initialize each section
@@ -16,6 +17,14 @@ public class Venue {
         boolean[][] checkedSeats = new boolean[10][60]; // 2D array to track checked seats
         int attempts = 0; // Counter for attempts
         int totalSeats = 10 * 60; // 10 rows, 60 seats per row
+=======
+        this.numOfSections = 4; // Example value
+        this.sections = new Section[numOfSections];
+        for (int i = 0; i < numOfSections; i++) {
+            this.sections[i] = new Section(i);
+        }
+    }
+>>>>>>> Stashed changes
 
         // Attempt to find an available ticket
         while (attempts < totalSeats) {
@@ -71,4 +80,6 @@ public class Venue {
     public void setSections(Section[] sections) {
         this.sections = sections;
     }
+
+    
 }

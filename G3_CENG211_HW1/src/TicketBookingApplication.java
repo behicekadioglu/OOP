@@ -18,6 +18,18 @@ public class TicketBookingApplication {
             System.out.println("An error occurred: " + e.getMessage());
             throw e;  // Ensure IOException is also re-thrown for handling in main method
         }
+        Section section = new Section(1);
+        section.printPrice(1);
+
+        CustomerManager customerManager = new CustomerManager(100);
+        customerManager.printAllCustomersTickets();
 
     }
+
+    
+
+    
+    
+
+
 }

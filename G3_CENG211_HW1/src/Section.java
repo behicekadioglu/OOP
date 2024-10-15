@@ -1,5 +1,8 @@
 import java.util.Random;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 public class Section {
     private int ID;
     private final int numOfRows = 10;
@@ -49,10 +52,73 @@ public class Section {
     // Constructors
     public Section(int ID) {
         this.ID = ID;
+<<<<<<< Updated upstream
         this.maxPrice = calculateMaxPrice();
         this.minPrice = calculateMinPrice();
         this.tickets = new Ticket[numOfRows][numOfSeats];
     }
+=======
+        setPriceRange();  // Set price range based on section
+        this.numOfRows = 10; // Example value
+        this.numOfSeats = 60; // Example value
+        this.tickets = new Ticket[numOfRows][numOfSeats]; // Initialize tickets array
+        initializeTickets(); // Initialize tickets
+    }
+    // Section'a göre maksimum ve minimum fiyatları rastgele belirliyoruz
+
+    public void setPriceRange(){
+        Random rand = new Random();
+
+        // Max ve Min Price aralıklarını section numarasına göre ayarlıyoruz
+        switch (ID) {
+            case 0:
+                maxPrice = 4000 + rand.nextInt(1001); // [4000, 5001)
+                minPrice = 3000 + rand.nextInt(1000); // [3000, 4000)
+                break;
+            case 1:
+                maxPrice = 3500 + rand.nextInt(1001); // [3500, 4501)
+                minPrice = 2500 + rand.nextInt(1000); // [2500, 3500)
+                break;
+            case 2:
+                maxPrice = 3000 + rand.nextInt(1001); // [3000, 4001)
+                minPrice = 2000 + rand.nextInt(1000); // [2000, 3000)
+                break;
+            case 3:
+                maxPrice = 2500 + rand.nextInt(1001); // [2500, 3501)
+                minPrice = 1500 + rand.nextInt(1000); // [1500, 2500)
+                break;
+            default:
+                throw new IllegalArgumentException("Geçersiz section ID");
+        }
+
+    }
+    // Her satırdaki bilet fiyatlarını belirliyoruz
+
+    public void initializeTickets(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 60; j++) {
+                double price = determinePrice(i);  // Satıra göre fiyat belirleme
+                tickets[i][j] = new Ticket(ID, i, j, price); // Bilet oluşturuyoruz
+            }
+        }
+
+    }
+    
+    // Satıra göre fiyatları belirleyen method
+
+    private double determinePrice(int row) {
+        if (row == 0) {
+            return maxPrice; // İlk satırda maksimum fiyat
+        } else if (row == 1) {
+            return maxPrice * 0.8; // İkinci satırda %80 fiyat
+        } else {
+            // Diğer satırlarda rastgele bir fiyat (min ve max arasında)
+            return minPrice + (Math.random() * (maxPrice - minPrice));
+        }
+    }
+
+   
+>>>>>>> Stashed changes
 
     public Section(Section section) {
         this.ID = section.getID();
@@ -185,4 +251,11 @@ public class Section {
         this.tickets = tickets;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void printPrice(int ID){
+        System.out.println("Section ID: " + ID + " Max Price: " + getMaxPrice() + " Min Price: " +  getMinPrice());
+    }
+
+>>>>>>> Stashed changes
 }

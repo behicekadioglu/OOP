@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Customer {
     private String customerName;
     private int numOfTickets;
@@ -31,4 +32,42 @@ public class Customer {
         bookedTickets[index] = ticket;
         ticket.setBookingStatus(true);
     }
+    // Bilet alma işlemi (random section ve koltuklardan)
+    public void purchaseTickets(Venue venue) {
+        Random rand = new Random();
+        int sectionCount = venue.getSections().length;
+
+        for (int i = 0; i < numOfTickets; i++) {
+            boolean ticketAssigned = false;
+
+            // Bilet bulunana kadar döngü
+            while (!ticketAssigned) {
+                // Rastgele bir section seçiyoruz
+                Section section = venue.getSections()[rand.nextInt(sectionCount)];
+                
+                // Rastgele bir satır ve koltuk seçiyoruz
+                int row = rand.nextInt(10); // 10 satır var
+                int seat = rand.nextInt(60); // 60 koltuk var
+
+                // Bileti kontrol ediyoruz (daha önce alınmış mı?)
+                if (!section.getTickets()[row][seat].isBooked()) {
+                    // Eğer bilet boşsa, bileti alıyoruz
+                    section.getTickets()[row][seat].setBookingStatus(true); // Bileti rezerve et
+                    bookedTickets[i] = section.getTickets()[row][seat]; // Müşteri bilet listesine ekle
+                    ticketAssigned = true; // Bilet başarıyla alındı
+                }
+            }
+        }
+    }
+    public void printTickets() {
+        System.out.println("Customer: " + customerName);
+        for (Ticket ticket : bookedTickets) {
+            if (ticket != null) {
+                System.out.println("Section " + ticket.getSectionNumber() + ", Row " + ticket.getRowNumber() + ", Seat " + ticket.getSeatNumber() + ", Price: " + ticket.getPrice());
+            }
+        }
+    }
+
+    
+
 }
