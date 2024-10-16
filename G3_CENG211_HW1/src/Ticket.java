@@ -38,8 +38,9 @@ public class Ticket {
             System.out.println("This ticket is already booked");
         }
     }
-    
+ 
     // Getters and setters
+
     public int getSectionNumber() {
         return sectionNumber;
     }

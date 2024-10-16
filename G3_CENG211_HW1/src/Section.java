@@ -1,4 +1,3 @@
-
 import java.util.Random;
 
 public class Section {
@@ -7,7 +6,6 @@ public class Section {
     private final int numOfSeats = 60;
     private double maxPrice;
     private double minPrice;
-    private Ticket[][] tickets = new Ticket[numOfRows][numOfSeats];
 
     // Constructors
     public Section(int ID) {

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Venue {
     private final int numOfSections = 4;
     private Section[] sections;
@@ -35,7 +37,7 @@ public class Venue {
         double occupancyRate = occupantSeats / (double) totalNumOfSeats;
         return occupancyRate;
     }
-
+    
     // Getters and Setters
     public int getNumOfSections() {
         return numOfSections;
