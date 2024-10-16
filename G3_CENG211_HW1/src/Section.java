@@ -1,3 +1,4 @@
+
 import java.util.Random;
 
 public class Section {
@@ -6,94 +7,61 @@ public class Section {
     private final int numOfSeats = 60;
     private double maxPrice;
     private double minPrice;
-    private Ticket[][] tickets;
-
-    // Constructor with section ID
-    public Section(int ID) {
-        this.ID = ID;
-        this.maxPrice = 4000 - this.ID * 500; // Set max price based on section ID
-        this.minPrice = 3000 - this.ID * 500; // Set min price based on section ID
-        this.tickets = new Ticket[numOfRows][numOfSeats]; // Initialize the ticket array
-        generateTickets(); // Generate tickets for the section
-    }
-
-    // Creating every ticket possible in one section
-    private void generateTickets() {
-        Random rand = new Random();
-
-        // Loop through each row and seat to create tickets
-        for (int row = 0; row < numOfRows; row++) {
-            for (int seat = 0; seat < numOfSeats; seat++) {
-                double price;
-
-                // First row has maximum price
-                if (row == 0) {
-                    price = maxPrice;
-                } 
-                // Second row has 80% of maximum price
-                else if (row == 1) {
-                    price = maxPrice * 0.8;
-                } 
-                // Remaining rows get random prices between minPrice and maxPrice
-                else {
-                    price = minPrice + (maxPrice - minPrice) * rand.nextDouble();
-                }
-
-                // Create and store the ticket in the tickets array
-                tickets[row][seat] = new Ticket(ID, row, seat, price);
-            }
-        }
-    }
-
+    private Ticket[][] tickets = new Ticket[numOfRows][numOfSeats];
 
     // Constructors
     public Section(int ID) {
-        this.ID = ID;
-        this.maxPrice = calculateMaxPrice();
-        this.minPrice = calculateMinPrice();
-        this.tickets = new Ticket[numOfRows][numOfSeats];
+        this.setID(ID);
+        this.determineMaxPrice(ID);
+        this.determineMinPrice(ID);
+        this.setTickets(this.createTickets());
     }
 
     public Section(Section section) {
         this.ID = section.getID();
-        this.numOfRows = section.getNumOfRows();
-        this.numOfSeats = section.getNumOfSeats();
         this.maxPrice = section.getMaxPrice();
         this.minPrice = section.getMinPrice();
         this.tickets = section.getTickets();
     }
-    
-    // Methods
 
-    private double calculateMaxPrice() {
+    // Methods
+    // gives a random double number in the range of max and min, max is not included
+    private double generateRandomDouble(double min, double max) {
+        Random rand = new Random();
+        return rand.nextDouble()*(max-min) + min;
+    }
+
+    // generates a random max price for the section according to the section ID
+    // This method is written according to the threshold values that are given in the homework description
+    private double determineMaxPrice(int ID) {
         double localMaxPrice = 0.0;
-        switch (this.ID) {
+        switch (ID) {
             case 0:
                 {
                     int max = 5001;
                     int min = 4000;
-                    localMaxPrice = generateRandom(max, min);
+                    localMaxPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 1:
                 {
                     int max = 4501;
                     int min = 3500;
-                    localMaxPrice = generateRandom(max, min);
+                    localMaxPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 2:
                 {
                     int max = 4001;
                     int min = 3000;
-                    localMaxPrice = generateRandom(max, min);
+                    localMaxPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 3:
                 {
                     int max = 3501;
                     int min = 2500;
-                    localMaxPrice = generateRandom(max, min);
+                    localMaxPrice = generateRandomDouble(min, max);
                     break;
                 }
             default:
@@ -105,35 +73,37 @@ public class Section {
         return localMaxPrice;
     }
 
-    private double calculateMinPrice() {
+    // generates a random min price for the section according to the section ID
+    // This method is written according to the threshold values that are given in the homework description
+    private double determineMinPrice(int ID) {
         double localMinPrice = 0.0;
-        switch (this.ID) {
+        switch (ID) {
             case 0:
                 {
                     int max = 4000;
                     int min = 3000;
-                    localMinPrice = generateRandom(max, min);
+                    localMinPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 1:
                 {
                     int max = 3500;
                     int min = 2500;
-                    localMinPrice = generateRandom(max, min);
+                    localMinPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 2:
                 {
                     int max = 3000;
                     int min = 2000;
-                    localMinPrice = generateRandom(max, min);
+                    localMinPrice = generateRandomDouble(min, max);
                     break;
                 }
             case 3:
                 {
                     int max = 2500;
                     int min = 1500;
-                    localMinPrice = generateRandom(max, min);
+                    localMinPrice = generateRandomDouble(min, max);
                     break;
                 }
             default:
@@ -142,11 +112,51 @@ public class Section {
         return localMinPrice;
     }
 
-    private double generateRandom(int max, int min) {
-        Random rand = new Random();
-        return rand.nextDouble()*(max-min) + min;
+    // creates all tickets of the section with random prices
+    private Ticket[][] createTickets() {
+        Ticket[][] tickets = new Ticket[this.numOfRows][this.numOfSeats];
+        for(int row = 0; row < this.numOfRows; row++){
+            for(int seat = 0; seat < this.numOfSeats; seat++){
+                double price = 0.0;
+                if (row == 0) {
+                    price = this.maxPrice;
+                } else if (row == 1) {
+                    price = this.maxPrice * 0.8;
+                } else {
+                    price = generateRandomDouble(this.minPrice, this.maxPrice);
+                }
+                tickets[row][seat] = new Ticket(this.ID, row, seat, price);
+            }
+        }
+        return tickets;
+
     }
 
+    // this method calculates the total revenue of a section
+    public double calculateRevenue(){
+        double totalRevenue = 0.0;
+        for(int row = 0; row < this.numOfRows; row++){
+            for(int seat = 0; seat < this.numOfSeats; seat++){
+                if (this.tickets[row][seat].isBooked()){
+                    totalRevenue += tickets[row][seat].getPrice();
+                }
+            }
+        }
+        return totalRevenue;
+    }
+
+    // this method calculated the occupancy rate of a section
+    public int calculateOccupantSeats(){
+        int occupantSeats = 0;
+        for(int row = 0; row < this.numOfRows; row++){
+            for(int seat = 0; seat < this.numOfSeats; seat++){
+                if (this.tickets[row][seat].isBooked()){
+                    occupantSeats += 1;
+                }
+            }
+        }
+        return occupantSeats;
+    }
 
     // Getters and Setters
     public int getID() {
@@ -173,6 +183,10 @@ public class Section {
         return tickets;
     }
 
+    public int getTotalNumOfSeats() {
+        return numOfRows*numOfSeats;
+    }
+
     public void setID(int ID) {
         if (ID < 4 && ID >= 0) {
             this.ID = ID;
@@ -184,5 +198,9 @@ public class Section {
     public void setTickets(Ticket[][] tickets) {
         this.tickets = tickets;
     }
-
+    
+    // sets one ticket in its place in the tickets array
+    public void setTicket(int row, int seat, Ticket ticket){
+        this.tickets[row][seat] = ticket;
+    }
 }

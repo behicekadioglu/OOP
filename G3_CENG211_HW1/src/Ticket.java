@@ -7,19 +7,18 @@ public class Ticket {
 
     // Constructors
     public Ticket(int sectionNumber, int rowNumber, int seatNumber, double price) {
-        this.sectionNumber = sectionNumber;
-        this.rowNumber = rowNumber;
-        this.seatNumber = seatNumber;
-        this.price = price;
-        this.bookingStatus = false;
+        this.setSectionNumber(sectionNumber);
+        this.setRowNumber(rowNumber);
+        this.setSeatNumber(seatNumber);
+        this.setPrice(price);
+        this.setBookingStatus(false);
     }
 
-    public Ticket(){
-        this.sectionNumber = -1;
-        this.rowNumber = -1;
-        this.seatNumber = -1;
-        this.price = -1;
-        this.bookingStatus = false;
+    public Ticket(int sectionNumber, int rowNumber, int seatNumber) {
+        this.setSectionNumber(sectionNumber);
+        this.setRowNumber(rowNumber);
+        this.setSeatNumber(seatNumber);
+        this.setBookingStatus(false);
     }
 
     public Ticket(Ticket ticket){
@@ -31,16 +30,16 @@ public class Ticket {
     }
 
     // Methods
-    public void bookTicket() { //prevents double booking
-        //RANDOM METHOD HERE
-        if (!this.bookingStatus) {
-            this.bookingStatus = true;
+    // makes the ticket booked, if it is booked prints a string to say that
+    public void bookTicket() {
+        if (this.bookingStatus == false){
+            this.setBookingStatus(true);
         } else {
-            System.out.println("This ticket is already booked.");
+            System.out.println("This ticket is already booked");
         }
     }
     
-    // Getters
+    // Getters and setters
     public int getSectionNumber() {
         return sectionNumber;
     }
@@ -60,26 +59,28 @@ public class Ticket {
     public boolean isBooked() {
         return bookingStatus;
     }
-    // Setters
-    public void setSectionNumber(int sectionNumber) {
+
+    private void setSectionNumber(int sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
 
-    public void setRowNumber(int rowNumber) {
+    private void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
     }
 
-    public void setSeatNumber(int seatNumber) {
+    private void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
     }
 
-    public void setPrice(double price) {
+    private void setPrice(double price) {
         this.price = price;
     }
 
-    public void setBookingStatus(boolean booked) {
-        bookingStatus = booked;
+    public void setBookingStatus(boolean booked){
+        this.bookingStatus = booked;
     }
+
+
 
     @Override
     public String toString() {

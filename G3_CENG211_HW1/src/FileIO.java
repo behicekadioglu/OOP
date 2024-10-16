@@ -5,34 +5,36 @@ import java.io.IOException;
 
 public class FileIO {
 
-    // Reads a CSV file and returns a two-dimensional array
-    public static String[][] readFile(String filename) throws IOException {
+    // reads a CSV file and returns an array that has customer names and number of tickets
+    public String[][] readFile(String filename) throws IOException {
 
-        int lineCount = countLines(filename);  // First, count the lines
+        // get the number of lines in the file
+        int numOfLines = countLines(filename);
         
-        String[][] array = new String[lineCount][];  // Initialize the array with the line count
+        String[][] customers = new String[numOfLines][];  // Initialize the array with the line count
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line;
-            int index = 0;
 
-            // Read each line and split by comma
+            int lineNum = 0;
+
+            // read each line and then split by comma to seperate names and number of tickets
             while ((line = reader.readLine()) != null) {
-                array[index] = line.split(",");  // Split each line by commas and store in array
-                index++;
+                customers[lineNum] = line.split(",");
+                lineNum++;
             }
 
-            reader.close(); 
-            
+            reader.close();
+        
         } catch (FileNotFoundException exception) {
             System.out.println("File not found: " + filename);
         }
 
-        return array;  // Return the 2D array
+        return customers;
     }
 
-    // Static method to count the number of lines in the file
+    // counts the lines in a csv file
     private static int countLines(String filename) throws IOException {
 
         BufferedReader reader = new BufferedReader(new FileReader(filename));
