@@ -1,114 +1,39 @@
 public class Query {
 
-    // Query to find all available tickets in a specific section
-    public static Ticket[] findAvailableTicketsInSection(Ticket[] tickets, int sectionNumber) {
-        int count = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber && !ticket.isBooked()) {
-                count++;
+    public void findTheSectionWithTheHighestRevenue(Venue venue){
+        Section[] sections = venue.getSections();
+        double highestRevenue = 0;
+        int highestRevenueID = 0;
+
+        for(int i = 0; i < sections.length; i++){
+            if (sections[i].calculateRevenue()>highestRevenue){
+                highestRevenue = sections[i].calculateRevenue();
+                highestRevenueID = i+1;
             }
         }
 
-        Ticket[] availableTickets = new Ticket[count];
-        int index = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber && !ticket.isBooked()) {
-                availableTickets[index++] = ticket;
-            }
-        }
-
-        return availableTickets;
+        System.out.println("Section with the highest revenue is section " + highestRevenueID +
+            ", and the revenue of this section is " + highestRevenue);
     }
 
-    // Query to find all tickets below a certain price
-    public static Ticket[] findTicketsBelowPrice(Ticket[] tickets, double maxPrice) {
-        int count = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getPrice() <= maxPrice) {
-                count++;
-            }
-        }
+    public void findTheTotalRevenueOfTheVenue(Venue venue){
 
-        Ticket[] affordableTickets = new Ticket[count];
-        int index = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getPrice() <= maxPrice) {
-                affordableTickets[index++] = ticket;
-            }
-        }
-
-        return affordableTickets;
     }
 
-    // Query to count the number of available seats in a section
-    public static int countAvailableSeatsInSection(Ticket[] tickets, int sectionNumber) {
-        int count = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber && !ticket.isBooked()) {
-                count++;
-            }
-        }
-        return count;
+    public void findTheOccupancyRateOfTheVenue(Venue venue){
+
     }
 
-    // Query to find the most expensive ticket in the venue
-    public static Ticket findMostExpensiveTicket(Ticket[] tickets) {
-        if (tickets.length == 0) {
-            return null;
-        }
-        Ticket mostExpensiveTicket = tickets[0];
-        for (Ticket ticket : tickets) {
-            if (ticket.getPrice() > mostExpensiveTicket.getPrice()) {
-                mostExpensiveTicket = ticket;
-            }
-        }
-        return mostExpensiveTicket;
+    public void findTheHighetsPaidCustomersTickets(Venue venue){
+
     }
 
-    // Query to find the least expensive ticket in the venue
-    public static Ticket findLeastExpensiveTicket(Ticket[] tickets) {
-        if (tickets.length == 0) {
-            return null;
-        }
-        Ticket leastExpensiveTicket = tickets[0];
-        for (Ticket ticket : tickets) {
-            if (ticket.getPrice() < leastExpensiveTicket.getPrice()) {
-                leastExpensiveTicket = ticket;
-            }
-        }
-        return leastExpensiveTicket;
+    public void findTheMostExpensiveTicket(Venue venue){
+
     }
 
-    // Query to find tickets in a specific row and section
-    public static Ticket[] findTicketsInRowAndSection(Ticket[] tickets, int sectionNumber, int rowNumber) {
-        int count = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber && ticket.getRowNumber() == rowNumber) {
-                count++;
-            }
-        }
+    private void drawTheSection(Venue venue){
 
-        Ticket[] matchingTickets = new Ticket[count];
-        int index = 0;
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber && ticket.getRowNumber() == rowNumber) {
-                matchingTickets[index++] = ticket;
-            }
-        }
-
-        return matchingTickets;
     }
 
-    // Query to check if a specific seat is available (based on section, row, and seat number)
-    public static boolean isSeatAvailable(Ticket[] tickets, int sectionNumber, int rowNumber, int seatNumber) {
-        for (Ticket ticket : tickets) {
-            if (ticket.getSectionNumber() == sectionNumber
-                    && ticket.getRowNumber() == rowNumber
-                    && ticket.getSeatNumber() == seatNumber
-                    && !ticket.isBooked()) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
