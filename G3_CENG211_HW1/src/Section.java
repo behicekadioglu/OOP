@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+=======
+
+import java.util.Arrays;
+import java.util.Objects;
+>>>>>>> Stashed changes
 import java.util.Random;
 <<<<<<< Updated upstream
 
@@ -50,6 +56,7 @@ public class Section {
 
 
     // Constructors
+
     public Section(int ID) {
         this.ID = ID;
 <<<<<<< Updated upstream
@@ -208,9 +215,32 @@ public class Section {
         return localMinPrice;
     }
 
+<<<<<<< Updated upstream
     private double generateRandom(int max, int min) {
         Random rand = new Random();
         return rand.nextDouble()*(max-min) + min;
+=======
+    
+
+    // creates all tickets of the section with random prices
+    private Ticket[][] createTickets() {
+        Ticket[][] tickets = new Ticket[this.numOfRows][this.numOfSeats];
+        for(int row = 0; row < this.numOfRows; row++){
+            for(int seat = 0; seat < this.numOfSeats; seat++){
+                double price = 0.0;
+                if (row == 0) {
+                    price = this.maxPrice;
+                } else if (row == 1) {
+                    price = this.maxPrice * 0.8;
+                } else {
+                    price = generateRandomDouble(this.minPrice, this.maxPrice);
+                }
+                tickets[row][seat] = new Ticket(this.ID, row, seat, price);
+            }
+        }
+        return tickets;
+
+>>>>>>> Stashed changes
     }
 
 
@@ -257,5 +287,43 @@ public class Section {
         System.out.println("Section ID: " + ID + " Max Price: " + getMaxPrice() + " Min Price: " +  getMinPrice());
     }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+    // toString Method
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Section: ").append(ID).append("\n");
+        sb.append("Row: ").append(numOfRows).append("\n");
+        sb.append("Seat: ").append(numOfSeats).append("\n");
+        sb.append("Max Price: ").append(maxPrice).append("\n");
+        sb.append("Min Price: ").append(minPrice).append("\n");
+        sb.append("Tickets: \n");
+        for (int i = 0; i < numOfRows; i++) {
+            for (int j = 0; j < numOfSeats; j++) {
+                sb.append(tickets[i][j]).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+    Section section = (Section) obj;
+    return numOfRows == section.numOfRows &&
+           numOfSeats == section.numOfSeats &&
+           Double.compare(section.maxPrice, maxPrice) == 0 &&
+           Double.compare(section.minPrice, minPrice) == 0 &&
+           Objects.equals(ID, section.ID) &&
+           Arrays.deepEquals(tickets, section.tickets);
+}
 >>>>>>> Stashed changes
 }

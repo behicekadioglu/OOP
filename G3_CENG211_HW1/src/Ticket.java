@@ -86,5 +86,21 @@ public class Ticket {
         return "Section: " + sectionNumber + ", Row: " + rowNumber + ", Seat: " + seatNumber + ", Price: " + price + ", Booking Status: " + bookingStatus;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Ticket ticket = (Ticket) obj;
+        return sectionNumber == ticket.sectionNumber &&
+               rowNumber == ticket.rowNumber &&
+               seatNumber == ticket.seatNumber &&
+               Double.compare(ticket.price, price) == 0 &&
+               bookingStatus == ticket.bookingStatus;
+    }
+
 
 }
