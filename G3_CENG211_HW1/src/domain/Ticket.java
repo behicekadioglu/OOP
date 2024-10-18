@@ -1,3 +1,5 @@
+package domain;
+
 public class Ticket {
     private int sectionNumber;
     private int rowNumber;

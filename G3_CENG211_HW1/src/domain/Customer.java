@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Random;
 
 public class Customer {
@@ -9,8 +11,8 @@ public class Customer {
     public Customer(String customerName, int numOfTickets) {
         this.setCustomerName(customerName);
         this.setNumOfTickets(numOfTickets);
-        // number of sections, rows, and seats are given hard coded as the numbers in the homework description
-        assignCustTickets(numOfTickets, 4, 10, 60);
+        // for now initialize an empty array, tickets will be assigned later
+        this.custTickets = new Ticket[this.numOfTickets];
     }
 
     // Methods
@@ -20,7 +22,7 @@ public class Customer {
         Random rand = new Random();
         return rand.nextInt(min, max);
     }
-
+/*
     // determines tickets of the customer randomly in a random section
     // if the ticket is already booked chooses another random ticket from the same section
     private void assignCustTickets(int numOfTickets, int numOfSections,int numOfRows, int numOfSeats){
@@ -38,7 +40,7 @@ public class Customer {
             this.custTickets[i] = ticket;
         }
     }
-
+*/
     // calculates the total price of the customers tickets
     public double getTotalPrice(){
         double totalPrice = 0.0;

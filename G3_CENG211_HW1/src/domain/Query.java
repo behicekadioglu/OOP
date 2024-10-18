@@ -1,3 +1,4 @@
+package domain;
 public class Query {
 
     public void findTheSectionWithTheHighestRevenue(Venue venue){
@@ -32,8 +33,8 @@ public class Query {
 
     }
 
-    private void drawTheSection(Venue venue){
-
+    public void drawTheSection(Venue venue){
+    
     }
 
 }

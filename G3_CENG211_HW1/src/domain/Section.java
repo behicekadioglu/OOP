@@ -1,3 +1,4 @@
+package domain;
 
 import java.util.Random;
 
@@ -11,10 +12,11 @@ public class Section {
 
     // Constructors
     public Section(int ID) {
-        this.setID(ID);
-        this.determineMaxPrice(ID);
+        this.ID = ID;
+        this.maxPrice = this.determineMaxPrice(ID);
+        this.minPrice = this.determineMinPrice(ID);
         this.determineMinPrice(ID);
-        this.setTickets(this.createTickets());
+        tickets = createTickets();
     }
 
     public Section(Section section) {
@@ -181,6 +183,11 @@ public class Section {
 
     public Ticket[][] getTickets() {
         return tickets;
+    }
+
+    // it returns the exact same ticket without copy it, because we need to work on the exactly same ticket
+    public Ticket getTicket(int row, int seat){
+        return tickets[row][seat];
     }
 
     public int getTotalNumOfSeats() {
