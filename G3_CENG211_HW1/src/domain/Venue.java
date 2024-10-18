@@ -1,3 +1,5 @@
+package domain;
+
 public class Venue {
     private final int numOfSections = 4;
     private Section[] sections;
@@ -12,7 +14,7 @@ public class Venue {
         sections = new Section[this.numOfSections];
         for(int i = 0; i < this.numOfSections; i++){
             Section section = new Section(i);
-            this.setSection(i, section);
+            sections[i] = section;
         }
     }
 
@@ -44,8 +46,9 @@ public class Venue {
     public Section[] getSections() {
         return sections;
     }
-
-    public void setSection(int ID, Section section) {
-        this.sections[ID] = section;
+    // it returns the exact same section without copy it, because we need to work on the exactly same section
+    public Section getSection(Venue venue, int sectionID){
+        Section section =  venue.getSections()[sectionID];
+        return section;
     }
 }
