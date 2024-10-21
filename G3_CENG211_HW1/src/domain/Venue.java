@@ -1,14 +1,29 @@
 package domain;
 
 public class Venue {
-    private final int numOfSections = 4;
+    private int numOfSections;
     private Section[] sections;
 
     // Constructors
     public Venue() {
+        this.numOfSections = 4;
         this.createSections();
     }
 
+    public Venue(int numOfSections) {
+        this.numOfSections = numOfSections;
+        this.createSections();
+    }
+
+    public Venue(Venue venue) {
+        this.numOfSections = venue.numOfSections;
+        this.sections = new Section[venue.numOfSections];
+        for (int i = 0; i < venue.numOfSections; i++) {
+            this.sections[i] = new Section(venue.sections[i]);
+        }
+    }
+
+    // methods
     // this method creates sections according to the number of sections
     public void createSections(){
         sections = new Section[this.numOfSections];
@@ -50,5 +65,40 @@ public class Venue {
     public Section getSection(Venue venue, int sectionID){
         Section section =  venue.getSections()[sectionID];
         return section;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Venue with ").append(numOfSections).append(" sections:\n");
+
+        for (int i = 0; i < numOfSections; i++) {
+            sb.append("Section ").append(i).append(":\n");
+            sb.append(sections[i].toString()).append("\n");
+        }
+
+        sb.append("Total Revenue: ").append(calculateRevenue()).append("\n");
+        sb.append("Occupancy Rate: ").append(calculateOccupancyRate() * 100).append("%\n");
+    
+        return sb.toString();
+}
+
+
+    public boolean equals(Venue other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        if (this.numOfSections != other.numOfSections) {
+            return false;
+        }
+        for (int i = 0; i < this.numOfSections; i++) {
+            if (!this.sections[i].equals(other.sections[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 }

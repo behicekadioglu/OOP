@@ -82,12 +82,21 @@ public class Ticket {
         this.bookingStatus = booked;
     }
 
-
-
+    // toString method
     @Override
     public String toString() {
-        return "Section: " + sectionNumber + ", Row: " + rowNumber + ", Seat: " + seatNumber + ", Price: " + price + ", Booking Status: " + bookingStatus;
+        return String.format("Section: %d, Row: %d, Seat: %d, Price: %.2f, Booking Status: %b", sectionNumber, rowNumber, seatNumber, price, bookingStatus);
+        }
+
+    //  equals method
+    public boolean equals(Ticket other) {
+        if (this.sectionNumber == other.sectionNumber &&
+            this.rowNumber == other.rowNumber &&
+            this.seatNumber == other.seatNumber &&
+            this.price == other.price &&
+            this.bookingStatus == other.bookingStatus) {
+            return true;
+        }
+        return false;
     }
-
-
 }

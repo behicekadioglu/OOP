@@ -185,7 +185,7 @@ public class Section {
         return tickets;
     }
 
-    // it returns the exact same ticket without copy it, because we need to work on the exactly same ticket
+    // it returns the exact same ticket without copying it, because we need to work on the exactly same ticket
     public Ticket getTicket(int row, int seat){
         return tickets[row][seat];
     }
@@ -209,5 +209,39 @@ public class Section {
     // sets one ticket in its place in the tickets array
     public void setTicket(int row, int seat, Ticket ticket){
         this.tickets[row][seat] = ticket;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Section ID: ").append(this.ID).append("\n");
+        sb.append("Number of Rows: ").append(this.numOfRows).append("\n");
+        sb.append("Number of Seats per Row: ").append(this.numOfSeats).append("\n");
+        sb.append("Max Price: ").append(String.format("%.2f", this.maxPrice)).append(" TL\n");
+        sb.append("Min Price: ").append(String.format("%.2f", this.minPrice)).append(" TL\n");
+        return sb.toString();
+    }
+
+    // equals method
+    public boolean equals(Section other) {
+        if (this == other) return true;
+        if (other == null) return false;
+
+        if (ID != other.ID) return false;
+        if (numOfRows != other.numOfRows) return false;
+        if (numOfSeats != other.numOfSeats) return false;
+        if (maxPrice != other.maxPrice) return false;
+        if (minPrice != other.minPrice) return false;
+
+        // Compare tickets array
+        if (tickets.length != other.tickets.length) return false;
+        for (int i = 0; i < tickets.length; i++) {
+            if (tickets[i].length != other.tickets[i].length) return false;
+            for (int j = 0; j < tickets[i].length; j++) {
+                if (!tickets[i][j].equals(other.tickets[i][j])) return false;
+            }
+        }
+
+        return true;
     }
 }
