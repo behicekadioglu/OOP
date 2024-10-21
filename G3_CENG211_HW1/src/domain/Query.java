@@ -1,6 +1,6 @@
 package domain;
-public class Query {
 
+public class Query {
     public void findTheSectionWithTheHighestRevenue(Venue venue){
         Section[] sections = venue.getSections();
         double highestRevenue = 0;
@@ -13,22 +13,22 @@ public class Query {
             }
         }
 
-        System.out.printf("Section with the highest revenue is section %d, and the revenue of this section is %.2f%n", highestRevenueID, highestRevenue);
+        System.out.printf("Section with the highest revenue is section %d, and the revenue of this section is %.2f%n\n", highestRevenueID, highestRevenue);
     }
 
     public void findTheTotalRevenueOfTheVenue(Venue venue){
         double totalRevenue = venue.calculateRevenue();
-        System.out.printf("The total revenue of the venue is: %.2f%n", totalRevenue);
+        System.out.printf("The total revenue of the venue is: %.2f%n\n", totalRevenue);
     }
 
     public void findTheOccupancyRateOfTheVenue(Venue venue){
         double occupancyRate = venue.calculateOccupancyRate() * 100; // Convert to percentage
-        System.out.printf("The occupancy rate of the venue is: %.2f%%%n", occupancyRate);
+        System.out.printf("The occupancy rate of the venue is: %.2f%%%n\n", occupancyRate);
     }
 
     public void findTheHighetsPaidCustomersTickets(Customer[] customers){
         double highestRevenue = 0;
-        String cust = "";
+        String custName = "";
         Ticket[] highestTickets = null;
         for (int i = 0; i < customers.length; i++){
             customers[i].getTotalPrice();
@@ -36,18 +36,19 @@ public class Query {
             if (customers[i].getTotalPrice()>highestRevenue){
                 highestRevenue = customers[i].getTotalPrice();
                 highestTickets = customers[i].getCustTickets();
-                cust = customers[i].getCustomerName();
+                custName = customers[i].getCustomerName();
             }
         }
 
         if (highestTickets != null) {
-            System.out.printf("The highest paid customer is: %s with a total payment of: %.2f%n", cust, highestRevenue);
+            System.out.printf("The highest paid customer is: %s with a total payment of: %.2f%n", custName, highestRevenue);
             System.out.println("Tickets bought by the customer: ");
             for (Ticket ticket : highestTickets) {
                 System.out.println(ticket);
             }
+            System.out.println();
         } else {
-            System.out.println("No customers found.");
+            System.out.println("No customers found.\n");
         }
     }
 
@@ -68,9 +69,9 @@ public class Query {
         }
     
         if (mostExpensiveTicket != null) {
-            System.out.printf("The most expensive ticket is: %s%nPrice: %.2f%n", mostExpensiveTicket, highestPrice);
+            System.out.printf("The most expensive ticket is: %s%n\n", mostExpensiveTicket);
         } else {
-            System.out.println("No tickets available.");
+            System.out.println("No tickets available.\n");
         }
     }
 
