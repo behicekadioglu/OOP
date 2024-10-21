@@ -20,7 +20,6 @@ public class TicketBookingApplication {
         // this method assign random avaliable tickets to each customer
         assignTickets(customers, venue);
 
-        System.out.println(venue.getSection(venue,1).calculateRevenue());
         // this method makes the calls for queries
         callQuery(venue, customers);
     }
@@ -63,6 +62,7 @@ public class TicketBookingApplication {
 
     private static void callQuery(Venue venue, Customer[] customers){
         Query query = new Query();
+        System.out.println("\nVenue Information:");
         query.findTheSectionWithTheHighestRevenue(venue);
         query.findTheTotalRevenueOfTheVenue(venue);
         query.findTheOccupancyRateOfTheVenue(venue);
