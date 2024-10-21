@@ -22,7 +22,7 @@ public class TicketBookingApplication {
 
         System.out.println(venue.getSection(venue,1).calculateRevenue());
         // this method makes the calls for queries
-        callQuery(venue);
+        callQuery(venue, customers);
     }
 
     private static Customer[] createCustomersFromFile(String fileLocation) throws IOException{
@@ -61,13 +61,13 @@ public class TicketBookingApplication {
         }
     }
 
-    private static void callQuery(Venue venue){
+    private static void callQuery(Venue venue, Customer[] customers){
         Query query = new Query();
         query.findTheSectionWithTheHighestRevenue(venue);
         query.findTheTotalRevenueOfTheVenue(venue);
         query.findTheOccupancyRateOfTheVenue(venue);
-        query.findTheHighetsPaidCustomersTickets(venue);
+        query.findTheHighetsPaidCustomersTickets(customers);
         query.findTheMostExpensiveTicket(venue);
-        query.drawTheSection(venue);
+        query.drawTheVenue(venue);
     }
 }

@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Random;
-
 public class Customer {
     private String customerName;
     private int numOfTickets;
@@ -15,32 +13,22 @@ public class Customer {
         this.custTickets = new Ticket[this.numOfTickets];
     }
 
-    // Methods
-
-    // gives a random int number in the range of max and min, max is not included
-    private int generateRandomInt(int min, int max){
-        Random rand = new Random();
-        return rand.nextInt(min, max);
+    public Customer() {
+        this.customerName = "";
+        this.numOfTickets = 0;
+        this.custTickets = new Ticket[0];
     }
-/*
-    // determines tickets of the customer randomly in a random section
-    // if the ticket is already booked chooses another random ticket from the same section
-    private void assignCustTickets(int numOfTickets, int numOfSections,int numOfRows, int numOfSeats){
-        this.custTickets = new Ticket[numOfTickets];
-        int randSectionID = generateRandomInt(0, numOfSections);
-        for(int i = 0; i < numOfTickets; i++){
-            int randRow = generateRandomInt(0, numOfRows);
-            int randSeat = generateRandomInt(0, numOfSeats);
-            Ticket ticket = new Ticket(randSectionID, randRow, randSeat);
-            while(ticket.isBooked()){
-                randRow = generateRandomInt(0, numOfRows);
-                randSeat = generateRandomInt(0, numOfSeats);
-                ticket = new Ticket(randSectionID, randRow, randSeat);
-            }
-            this.custTickets[i] = ticket;
+
+    public Customer(Customer customer) {
+        this.setCustomerName(customer.customerName);
+        this.setNumOfTickets(customer.numOfTickets);
+        this.custTickets = new Ticket[customer.numOfTickets];
+        for (int i = 0; i < customer.numOfTickets; i++) {
+            this.custTickets[i] = new Ticket(customer.custTickets[i]);
         }
     }
-*/
+
+    // Methods
     // calculates the total price of the customers tickets
     public double getTotalPrice(){
         double totalPrice = 0.0;
@@ -68,4 +56,42 @@ public class Customer {
         this.numOfTickets = numTickets;
     }
 
+    // toString method
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(customerName).append("'s Booked Tickets:\n");
+    
+        for (int i = 0; i < numOfTickets; i++) {
+            Ticket ticket = custTickets[i];
+            if (ticket != null) {
+                sb.append("Ticket ").append(i + 1).append(": Section: ").append(ticket.getSectionNumber())
+                .append(" Row: ").append(ticket.getRowNumber())
+                .append(" Seat: ").append(ticket.getSeatNumber())
+                .append(" ").append(ticket.getPrice()).append(" TL\n");
+            }
+        }
+
+        sb.append("Total Price: ").append(getTotalPrice()).append(" TL\n");
+        return sb.toString();
 }
+
+
+    // equals method
+    public boolean equals(Customer other) {
+        if (this == other) return true;
+        if (other == null) return false;
+
+        if (this.numOfTickets != other.numOfTickets) return false;
+        if (!this.customerName.equals(other.customerName)) return false;
+
+        if (this.custTickets.length != other.custTickets.length) return false;
+        for (int i = 0; i < this.custTickets.length; i++) {
+            if (!this.custTickets[i].equals(other.custTickets[i])) return false;
+        }
+
+        return true;
+    }
+
+}
+
