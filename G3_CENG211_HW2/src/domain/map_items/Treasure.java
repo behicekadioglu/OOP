@@ -2,28 +2,29 @@ package domain.map_items;
 
 import domain.MapPosition;
 
-public class Mushroom extends MapItem {
+public class Treasure extends MapItem {
     // No-argument constructor
-    public Mushroom() {
+    public Treasure() {
         super(new MapPosition(0, 0, false));
     }
 
     // Full-argument constructor
-    public Mushroom(MapPosition position) {
+    public Treasure(MapPosition position) {
         super(position);
     }
 
     // Copy constructor
-    public Mushroom(Mushroom other) {
+    public Treasure(Treasure other) {
         super(new MapPosition(other.getPosition()));
     }
 
     // toString method
     @Override
     public String toString() {
-        return "Mushroom{" +
+        return "Treasure{" +
                 "position=" + getPosition() +
                 '}';
     }
 
+    
 }
