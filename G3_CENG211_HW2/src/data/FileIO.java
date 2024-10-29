@@ -1,11 +1,17 @@
+
 package data;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileIO {
     private String filePath;
 
     // No-argument constructor
-    public FileIO() {
-        this.filePath = "default.txt";
+    public FileIO() { //we can use this constructor on scoreboard class
+        this.filePath = "score.txt";
     }
 
     // Full-argument constructor
@@ -17,6 +23,34 @@ public class FileIO {
     public FileIO(FileIO other) {
         this.filePath = other.filePath;
     }
+
+    // Method to create a new file if it doesn't exist
+    public boolean createFile() {   //we can use this method on scoreboard class
+        File file = new File(filePath);
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created successfully: " + filePath);
+                return true;
+            } else {
+                System.out.println("File already exists: " + filePath);
+                return false;
+            }
+        } catch (IOException e) {
+            System.err.println("Error creating file: " + e.getMessage());
+            return false;
+        }
+    }
+
+public void writeStringListToFile(ArrayList<String> contentList) {
+    try (FileWriter writer = new FileWriter(filePath)) { // Overwrite mode
+        for (String content : contentList) {
+            writer.write(content + System.lineSeparator()); // Write each entry on a new line
+        }
+        System.out.println("Successfully updated the file with the new list.");
+    } catch (IOException e) {
+        System.err.println("Error writing to file: " + e.getMessage());
+    }
+}
 
     // Getter and Setter
     public String getFilePath() {
@@ -34,11 +68,5 @@ public class FileIO {
                 "filePath='" + filePath + '\'' +
                 '}';
     }
-    
-    // equals method
-    public boolean equals(FileIO other) {
-        if (other == null) return false;
-        return this.filePath.equals(other.filePath);
-    }
-
 }
+

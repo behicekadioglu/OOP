@@ -1,7 +1,8 @@
+
 package domain.map_items;
 
-import java.util.ArrayList;
 import domain.MapPosition;
+import java.util.ArrayList;
 public class Booster extends MapItem {
     private ArrayList<MapItem> items;
 
@@ -9,6 +10,10 @@ public class Booster extends MapItem {
     public Booster() {
         super(new MapPosition(0, 0, false));
         this.items = new ArrayList<>();
+        this.items.add(new Diamond());
+        this.items.add(new Coin());
+        this.items.add(new Treasure());
+
     }
 
     // Full-argument constructor
@@ -21,6 +26,12 @@ public class Booster extends MapItem {
     public Booster(Booster other) {
         super(new MapPosition(other.getPosition()));
         this.items = new ArrayList<>(other.items);
+    }
+    //overriding the interaction method for booster arraylist
+    public void interactionOfBooster(Player player) {
+        for (MapItem item : items) {
+            item.interaction(player);
+        }
     }
 
     // Getters and Setters
@@ -61,3 +72,4 @@ public class Booster extends MapItem {
         return true;
     }
 }
+

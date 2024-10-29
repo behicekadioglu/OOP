@@ -1,16 +1,19 @@
+
 package domain.map_items;
 
+import domain.MapPosition;
 import java.util.ArrayList;
 
-import domain.MapPosition;
-
 public class Breaker extends MapItem {
-   private ArrayList<MapItem> items;
+    private ArrayList<MapItem> items;
 
     // No-argument constructor
     public Breaker() {
-        super(new MapPosition(0, 0, false));
+        super(new MapPosition(0, 0, true));
         this.items = new ArrayList<>();
+        // Adding Frog and Mushroom objects to the items list
+        this.items.add(new Frog());
+        this.items.add(new Mushroom());
     }
 
     // Full-argument constructor
@@ -23,6 +26,13 @@ public class Breaker extends MapItem {
     public Breaker(Breaker other) {
         super(new MapPosition(other.getPosition()));
         this.items = new ArrayList<>(other.items);
+    }
+    
+    //overriding the interaction method for breaker arraylist
+    public void interactionOfBreaker(Player player) {
+        for (MapItem item : items) {
+            item.interaction(player);
+        }
     }
 
     // Getters and Setters

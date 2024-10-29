@@ -1,9 +1,11 @@
+
 package domain.map_items;
 
 import domain.MapPosition;
 
 public class Player extends MapItem {
-     private int points;
+    //attributes
+    private int points;
     private int lives;
 
     // No-argument constructor
@@ -46,3 +48,4 @@ public class Player extends MapItem {
 
     
 }
+

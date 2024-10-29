@@ -1,9 +1,11 @@
+
 package domain;
 public class Score {
     private int points;
     private MapPosition from;
     private MapPosition to;
-
+    
+    //this class is used to store the score of the single game
     // No-argument constructor
     public Score() {
         this.points = 0;
@@ -71,3 +73,4 @@ public class Score {
 
 
 }
+

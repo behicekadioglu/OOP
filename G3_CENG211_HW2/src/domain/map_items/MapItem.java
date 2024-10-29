@@ -20,6 +20,10 @@ public abstract class MapItem {
         this.position = new MapPosition(other.getPosition());
     }
 
+    public void interaction(Player player) {
+        // This method will be overridden in the subclasses
+    }
+
     // Getters and Setters
     public MapPosition getPosition() {
         return position;
@@ -31,3 +35,4 @@ public abstract class MapItem {
 
     
 }
+
