@@ -41,6 +41,7 @@ public class FileIO {
         }
     }
 
+
     public void writeStringListToFile(ArrayList<String> contentList) {
         try (FileWriter writer = new FileWriter(filePath)) { // Overwrite mode
             for (String content : contentList) {

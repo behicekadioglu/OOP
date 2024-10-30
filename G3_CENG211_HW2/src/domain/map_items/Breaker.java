@@ -26,6 +26,7 @@ public class Breaker extends MapItem {
     public Breaker(Breaker other) {
         super(new MapPosition(other.getPosition()));
         this.setItems(other.getItems());
+
     }
     
     //overriding the interaction method for breaker arraylist

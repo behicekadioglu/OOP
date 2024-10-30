@@ -5,7 +5,7 @@ import domain.MapPosition;
 
 public class Diamond extends MapItem {
     private int effectPoints;
-
+  
      // No-argument constructor
     public Diamond() {
         super(new MapPosition(0, 0, false));

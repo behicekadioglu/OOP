@@ -1,5 +1,6 @@
 package domain;
 
+
 import domain.map_items.MapItem;
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class Map {
     }
 
     public void setMap(ArrayList<ArrayList<MapItem>> map) {
+
         // DEEP COPY YAPILMAK ZORUNDA!!!!!!
         this.map = map;
     }

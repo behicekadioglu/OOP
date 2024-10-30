@@ -1,6 +1,7 @@
 
 package domain;
 public class Score {
+
     private int point;
     private int maxPoint;
     
@@ -41,7 +42,6 @@ public class Score {
             this.maxPoint = maxPoint;
         }
     }
-
 
     // toString method
     @Override

@@ -46,7 +46,6 @@ public class Scoreboard {
     public void printScores() {
         System.out.println("Scores:");
         for (Score score : scores) {
-
             // YAZDIRMA FORMATI UYGUN DEĞİL
             System.out.println(score.getPoint());
         }

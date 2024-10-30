@@ -14,6 +14,7 @@ public class Booster extends MapItem {
         this.items.add(new Diamond());
         this.items.add(new Coin());
         this.items.add(new Treasure());
+
     }
 
     // Full-argument constructor
@@ -27,7 +28,7 @@ public class Booster extends MapItem {
         super(new MapPosition(other.getPosition()));
         this.setItems(other.getItems());
     }
-    
+
     //overriding the interaction method for booster arraylist
     public void interactionOfBooster(Player player) {
         for (MapItem item : items) {
