@@ -4,8 +4,8 @@ package domain.map_items;
 import domain.MapPosition;
 
 public class Diamond extends MapItem {
-
     private int effectPoints;
+  
      // No-argument constructor
     public Diamond() {
         super(new MapPosition(0, 0, false));
@@ -13,9 +13,9 @@ public class Diamond extends MapItem {
     }
 
     // Full-argument constructor
-    public Diamond(MapPosition position, int points) {
+    public Diamond(MapPosition position) {
         super(position);
-        this.effectPoints = points;
+        this.effectPoints = 10;
     }
 
     // Copy constructor

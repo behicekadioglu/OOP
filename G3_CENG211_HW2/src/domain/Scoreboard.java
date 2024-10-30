@@ -11,7 +11,7 @@ public class Scoreboard {
     private FileIO file;
 
     // Constructor
-    //this constructor creates a new arraylist for scores and 
+    //this constructor creates a new arraylist for scores and
     //a new fileio object to use file operations
     public Scoreboard() {
         scores = new ArrayList<>();
@@ -38,6 +38,7 @@ public class Scoreboard {
     //using the writeStringListToFile method from fileio class
     public void updateScoreFile() {
         ArrayList<String> scoreList = convertScoresToStringList();
+        // DOSYAYA YAZDIRMA FORMATI UYGUN DEĞİL
         file.writeStringListToFile(scoreList);
     }
 
@@ -45,15 +46,18 @@ public class Scoreboard {
     public void printScores() {
         System.out.println("Scores:");
         for (Score score : scores) {
-            System.out.println(score.toString());
+            // YAZDIRMA FORMATI UYGUN DEĞİL
+            System.out.println(score.getPoint());
         }
     }
     // Getters and Setters of scores arraylist
     public ArrayList<Score> getScores() {
+        // DEEP COPY YAPILMIYOR
         return scores;
     }
 
     public void setScores(ArrayList<Score> scores) {
+        // DEEP COPY YAPILMIYOR
         this.scores = scores;
     }
 

@@ -6,6 +6,7 @@ import domain.MapPosition;
 public class Frog extends MapItem {
 
     private int effectLives;
+
     // No-argument constructor
     public Frog() {
         super(new MapPosition(0, 0, false));
@@ -13,9 +14,9 @@ public class Frog extends MapItem {
     }
 
     // Full-argument constructor
-    public Frog(MapPosition position, int lives) {
+    public Frog(MapPosition position) {
         super(position);
-        this.effectLives = lives;
+        this.effectLives = -1;
     }
 
     // Copy constructor

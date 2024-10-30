@@ -13,9 +13,9 @@ public class Mushroom extends MapItem {
     }
 
     // Full-argument constructor
-    public Mushroom(MapPosition position, int points) {
+    public Mushroom(MapPosition position) {
         super(position);
-        this.effectPoints = points;
+        this.effectPoints = -20;
     }
 
     // Copy constructor

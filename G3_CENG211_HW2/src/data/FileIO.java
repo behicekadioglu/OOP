@@ -41,16 +41,17 @@ public class FileIO {
         }
     }
 
-public void writeStringListToFile(ArrayList<String> contentList) {
-    try (FileWriter writer = new FileWriter(filePath)) { // Overwrite mode
-        for (String content : contentList) {
-            writer.write(content + System.lineSeparator()); // Write each entry on a new line
+
+    public void writeStringListToFile(ArrayList<String> contentList) {
+        try (FileWriter writer = new FileWriter(filePath)) { // Overwrite mode
+            for (String content : contentList) {
+                writer.write(content + System.lineSeparator()); // Write each entry on a new line
+            }
+            System.out.println("Successfully updated the file with the new list.");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
         }
-        System.out.println("Successfully updated the file with the new list.");
-    } catch (IOException e) {
-        System.err.println("Error writing to file: " + e.getMessage());
     }
-}
 
     // Getter and Setter
     public String getFilePath() {

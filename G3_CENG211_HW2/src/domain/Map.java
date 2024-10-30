@@ -1,11 +1,11 @@
 package domain;
 
-import java.util.ArrayList;
 
 import domain.map_items.MapItem;
+import java.util.ArrayList;
 
 public class Map {
-     private ArrayList<ArrayList<MapItem>> map;
+    private ArrayList<ArrayList<MapItem>> map;
 
     // No-argument constructor
     public Map() {
@@ -14,7 +14,7 @@ public class Map {
 
     // Full-argument constructor
     public Map(ArrayList<ArrayList<MapItem>> map) {
-        this.map = map;
+        this.setMap(map);
     }
 
     // Copy constructor
@@ -24,14 +24,14 @@ public class Map {
 
     // Getters and Setters
     public ArrayList<ArrayList<MapItem>> getMap() {
+        // DEEP COPY YAPILMAK ZORUNDA!!!!!!
         return map;
     }
 
     public void setMap(ArrayList<ArrayList<MapItem>> map) {
+
+        // DEEP COPY YAPILMAK ZORUNDA!!!!!!
         this.map = map;
     }
-
-   
-    
 }
 

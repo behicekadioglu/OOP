@@ -19,13 +19,14 @@ public class Breaker extends MapItem {
     // Full-argument constructor
     public Breaker(MapPosition position, ArrayList<MapItem> items) {
         super(position);
-        this.items = items;
+        setItems(items);
     }
 
     // Copy constructor
     public Breaker(Breaker other) {
         super(new MapPosition(other.getPosition()));
-        this.items = new ArrayList<>(other.items);
+        this.setItems(other.getItems());
+
     }
     
     //overriding the interaction method for breaker arraylist
@@ -37,11 +38,12 @@ public class Breaker extends MapItem {
 
     // Getters and Setters
     public ArrayList<MapItem> getItems() {
+        // DEEP COPY YAPILMALI
         return items;
     }
 
     public void setItems(ArrayList<MapItem> items) {
-        this.items = items;
+        this.items = new ArrayList<>(items);
     }
 
     // equals method

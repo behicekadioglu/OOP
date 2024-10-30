@@ -3,6 +3,7 @@ package domain.map_items;
 
 import domain.MapPosition;
 import java.util.ArrayList;
+
 public class Booster extends MapItem {
     private ArrayList<MapItem> items;
 
@@ -19,14 +20,15 @@ public class Booster extends MapItem {
     // Full-argument constructor
     public Booster(MapPosition position, ArrayList<MapItem> items) {
         super(position);
-        this.items = items;
+        this.setItems(items);
     }
 
     // Copy constructor
     public Booster(Booster other) {
         super(new MapPosition(other.getPosition()));
-        this.items = new ArrayList<>(other.items);
+        this.setItems(other.getItems());
     }
+
     //overriding the interaction method for booster arraylist
     public void interactionOfBooster(Player player) {
         for (MapItem item : items) {
@@ -36,11 +38,12 @@ public class Booster extends MapItem {
 
     // Getters and Setters
     public ArrayList<MapItem> getItems() {
+        // DEEP COPY YAPILMALI
         return items;
     }
 
     public void setItems(ArrayList<MapItem> items) {
-        this.items = items;
+        this.items = new ArrayList<>(items);
     }
 
     // toString method

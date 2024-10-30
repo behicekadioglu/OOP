@@ -10,13 +10,13 @@ public class Coin extends MapItem {
     public Coin() {
         super(new MapPosition(0, 0, false));
         this.effectPoints = 5;
-        
+
     }
 
     // Full-argument constructor
-    public Coin(MapPosition position, int points) {
+    public Coin(MapPosition position) {
         super(position);
-        this.effectPoints = points;
+        this.effectPoints = 5;
     }
 
     // Copy constructor
@@ -24,7 +24,8 @@ public class Coin extends MapItem {
         super(new MapPosition(other.getPosition()));
         this.effectPoints = other.effectPoints;
     }
-    //interaction method for coin 
+
+    //interaction method for coin
     @Override
     public void interaction(Player player){
         player.setPoints(player.getPoints() + effectPoints);

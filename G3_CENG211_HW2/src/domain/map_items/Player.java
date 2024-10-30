@@ -4,7 +4,7 @@ package domain.map_items;
 import domain.MapPosition;
 
 public class Player extends MapItem {
-    //attributes
+
     private int points;
     private int lives;
 
@@ -16,10 +16,10 @@ public class Player extends MapItem {
     }
 
     // Full-argument constructor
-    public Player(MapPosition position, int points, int lives) {
+    public Player(MapPosition position) {
         super(position);
-        this.points = points;
-        this.lives = lives;
+        this.points = 100;
+        this.lives = 2;
     }
 
     // Copy constructor

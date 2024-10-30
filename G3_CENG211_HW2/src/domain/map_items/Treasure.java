@@ -5,6 +5,7 @@ import domain.MapPosition;
 
 public class Treasure extends MapItem {
     private int effectLives;
+
     // No-argument constructor
     public Treasure() {
         super(new MapPosition(0, 0, false));
@@ -12,9 +13,9 @@ public class Treasure extends MapItem {
     }
 
     // Full-argument constructor
-    public Treasure(MapPosition position, int lives) {
+    public Treasure(MapPosition position) {
         super(position);
-        this.effectLives = lives;
+        this.effectLives = 1;
     }
 
     // Copy constructor

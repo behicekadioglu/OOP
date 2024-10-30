@@ -1,76 +1,59 @@
 
 package domain;
 public class Score {
-    private int points;
-    private MapPosition from;
-    private MapPosition to;
+
+    private int point;
+    private int maxPoint;
     
     //this class is used to store the score of the single game
     // No-argument constructor
     public Score() {
-        this.points = 0;
-        this.from = new MapPosition();
-        this.to = new MapPosition();
+        this.point = 0;
+        this.maxPoint = 0;
     }
 
     // Full-argument constructor
-    public Score(int points, MapPosition from, MapPosition to) {
-        this.points = points;
-        this.from = from;
-        this.to = to;
+    public Score(int point, int maxPoint) {
+        this.point = point;
+        this.setMaxPoint(maxPoint);
     }
 
     // Copy constructor
     public Score(Score other) {
-        this.points = other.points;
-        this.from = new MapPosition(other.from);
-        this.to = new MapPosition(other.to);
+        this.point = other.point;
+        this.maxPoint = other.maxPoint;
     }
 
     // Getters and Setters
-    public int getPoints() {
-        return points;
+    public int getPoint() {
+        return point;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
+    public void setPoint(int point) {
+        this.point = point;
     }
 
-    public MapPosition getFrom() {
-        return from;
+    public int getMaxPoint() {
+        return maxPoint;
     }
 
-    public void setFrom(MapPosition from) {
-        this.from = from;
-    }
-
-    public MapPosition getTo() {
-        return to;
-    }
-
-    public void setTo(MapPosition to) {
-        this.to = to;
+    public void setMaxPoint(int maxPoint) {
+        if (this.maxPoint <= maxPoint){
+            this.maxPoint = maxPoint;
+        }
     }
 
     // toString method
     @Override
     public String toString() {
-        return "Score{" +
-               "points=" + points +
-               ", from=" + from +
-               ", to=" + to +
-               '}';
+        return "Score{" + "point=" + point + ", maxPoint=" + maxPoint +'}';
     }
 
     // equals method
     public boolean equals(Score other) {
         if (other == null) return false;
 
-        return this.points == other.points &&
-               this.from.equals(other.from) &&
-               this.to.equals(other.to);
+        return this.point == other.point && this.maxPoint == other.maxPoint;
     }
-
-
 }
 
